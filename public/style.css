@@ -1,0 +1,143 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  padding: 20px;
+}
+.header {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 40px;
+}
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.badge {
+  background: rgba(255,215,0,0.15);
+  color: #ffd700;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgba(255,215,0,0.2);
+}
+.container { width: 100%; max-width: 700px; flex: 1; }
+.upload-card {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  border: 2px dashed rgba(255,255,255,0.1);
+  border-radius: 30px;
+  padding: 60px 40px;
+  text-align: center;
+  transition: all 0.3s ease;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.upload-card.dragover { border-color: #ffd700; background: rgba(255,215,0,0.05); transform: scale(1.01); }
+.upload-icon { font-size: 72px; margin-bottom: 20px; }
+.upload-card h2 { font-size: 28px; font-weight: 600; letter-spacing: 2px; margin-bottom: 10px; }
+.sub-text { color: rgba(255,255,255,0.5); font-size: 16px; margin-bottom: 5px; }
+.upload-actions { margin-top: 30px; }
+.btn-primary {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+  color: #1a1a2e;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,215,0,0.3); }
+.progress-container {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.progress-bar { flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f7971e, #ffd200);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+.progress-text { font-size: 14px; font-weight: 600; color: #ffd200; min-width: 50px; }
+.result-container { width: 100%; margin-top: 30px; animation: fadeInUp 0.5s ease; }
+.result-success { font-size: 24px; margin-bottom: 15px; }
+.result-success strong {
+  background: linear-gradient(135deg, #00e676, #00c853);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.result-link {
+  display: flex;
+  gap: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  padding: 5px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.result-link input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 12px 16px;
+  font-size: 14px;
+  outline: none;
+  font-family: monospace;
+}
+.btn-copy {
+  background: rgba(255,215,0,0.15);
+  border: none;
+  color: #ffd700;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn-upload-more {
+  margin-top: 15px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-upload-more:hover { border-color: #ffd700; color: #ffd700; }
+.footer { margin-top: 40px; text-align: center; color: rgba(255,255,255,0.3); font-size: 14px; }
+.footer .credit { margin-top: 5px; font-size: 12px; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 600px) {
+  .upload-card { padding: 40px 20px; min-height: 300px; }
+  .upload-card h2 { font-size: 22px; }
+  .btn-primary { padding: 14px 30px; font-size: 16px; }
+  .result-link { flex-direction: column; }
+}
