@@ -6,5 +6,8 @@
   "type": "module",
   "dependencies": {
     "@vercel/blob": "^1.0.0"
+  },
+  "scripts": {
+    "vercel-build": "npm install"
   }
 }
