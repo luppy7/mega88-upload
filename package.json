@@ -1,11 +1,12 @@
 {
   "name": "mega88-upload",
   "version": "1.0.0",
-  "description": "Mega88 - Upload Platform",
+  "description": "Mega88 - Upload Platform with Short URL & Upscale",
   "main": "api/upload.js",
   "type": "module",
   "dependencies": {
-    "@vercel/blob": "^1.0.0"
+    "@vercel/blob": "^1.0.0",
+    "axios": "^1.6.0"
   },
   "scripts": {
     "vercel-build": "npm install"
