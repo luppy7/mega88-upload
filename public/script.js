@@ -1,3 +1,4 @@
+
 const dropZone = document.getElementById('dropZone');
 const fileInput = document.getElementById('fileInput');
 const browseBtn = document.getElementById('browseBtn');
@@ -28,6 +29,22 @@ dropZone.addEventListener('drop', (e) => {
   if (files.length > 0) uploadFile(files[0]);
 });
 
+// ============== FUNGSI PENDEKKAN LINK ==============
+async function shortenUrl(longUrl) {
+  try {
+    const response = await fetch('https://spoo.me/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `url=${encodeURIComponent(longUrl)}`
+    });
+    const data = await response.json();
+    return data.short_url || longUrl;
+  } catch (error) {
+    console.error('Shorten error:', error);
+    return longUrl;
+  }
+}
+
 function handleFile(e) {
   const file = e.target.files[0];
   if (file) uploadFile(file);
@@ -53,14 +70,17 @@ async function uploadFile(file) {
       }
     });
 
-    xhr.addEventListener('load', () => {
+    xhr.addEventListener('load', async () => {
       progressContainer.style.display = 'none';
       if (xhr.status === 200) {
         const response = JSON.parse(xhr.responseText);
         if (response.status) {
-          resultUrl.value = response.data.url;
+          const longUrl = response.data.url;
+          // ===== PENDEKKAN LINK SECARA AUTOMATIK =====
+          const shortUrl = await shortenUrl(longUrl);
+          resultUrl.value = shortUrl;
           resultContainer.style.display = 'block';
-          navigator.clipboard?.writeText(response.data.url);
+          navigator.clipboard?.writeText(shortUrl);
         } else {
           alert(`Ralat: ${response.message}`);
         }
@@ -82,6 +102,7 @@ async function uploadFile(file) {
   }
 }
 
+// ============== COPY ==============
 copyBtn.addEventListener('click', () => {
   resultUrl.select();
   navigator.clipboard?.writeText(resultUrl.value);
