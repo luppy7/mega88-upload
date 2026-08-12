@@ -16,9 +16,14 @@ export async function POST(request) {
       }), { status: 400 });
     }
 
-    const blob = await put(`megag88/${Date.now()}-${file.name}`, file, {
+    const imageBuffer = Buffer.from(await file.arrayBuffer());
+    const timestamp = Date.now();
+    const ext = file.name.split('.').pop() || 'jpg';
+    const filename = `${timestamp}.${ext}`;
+
+    const blob = await put(`megag88/${filename}`, imageBuffer, {
       access: 'public',
-      contentType: file.type,
+      contentType: file.type || 'image/jpeg',
     });
 
     return new Response(JSON.stringify({
@@ -33,9 +38,9 @@ export async function POST(request) {
     }), { status: 200 });
 
   } catch (error) {
-    return new Response(JSON.stringify({ 
-      status: false, 
-      message: error.message 
+    return new Response(JSON.stringify({
+      status: false,
+      message: error.message || 'Ralat server'
     }), { status: 500 });
   }
 }
