@@ -29,16 +29,12 @@ dropZone.addEventListener('drop', (e) => {
   if (files.length > 0) uploadFile(files[0]);
 });
 
-// ============== FUNGSI PENDEKKAN LINK ==============
+// ============== FUNGSI PENDEKKAN LINK (is.gd - PALING PENDEK) ==============
 async function shortenUrl(longUrl) {
   try {
-    const response = await fetch('https://spoo.me/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `url=${encodeURIComponent(longUrl)}`
-    });
-    const data = await response.json();
-    return data.short_url || longUrl;
+    const response = await fetch(`https://is.gd/create.php?format=simple&url=${encodeURIComponent(longUrl)}`);
+    const shortUrl = await response.text();
+    return shortUrl || longUrl;
   } catch (error) {
     console.error('Shorten error:', error);
     return longUrl;
