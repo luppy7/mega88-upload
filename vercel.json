@@ -19,7 +19,7 @@
     {
       "source": "/s/:filename",
       "destination": "https://fxhjvl8pjizmrxis.public.blob.vercel-storage.com/megag88/:filename",
-      "permanent": true
+      "permanent": false
     }
   ]
 }
